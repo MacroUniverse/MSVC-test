@@ -11,9 +11,8 @@ set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 # Library configuration
-add_library(MathUtils SHARED 
+add_library(MathUtils SHARED
     src/math_utils.cpp
-    include/math_utils.h
 )
 
 target_include_directories(MathUtils PUBLIC
@@ -26,10 +25,10 @@ if(MSVC)
 endif()
 
 # Set output directory for the DLL
-set_target_properties(MathUtils PROPERTIES 
+set_target_properties(MathUtils PROPERTIES
+    OUTPUT_NAME "MathUtils" # Base name without prefix or extension
+    PREFIX "lib" # Ensures the output files start with 'lib'
     ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib
     LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin
     RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin
-    PREFIX "lib"  # Ensures the output files start with 'lib'
-    OUTPUT_NAME "MathUtils"  # Base name without prefix or extension
 )
